@@ -1,190 +1,865 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mayur Gajapure - Resume</title>
+    <title>Mayur Gajapure | Senior Software Engineer</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <style>
-        @media print {
-            body {
-                -webkit-print-color-adjust: exact;
-                print-color-adjust: exact;
-            }
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Space+Grotesk:wght@300;500;700&display=swap"
+        rel="stylesheet">
 
-            .no-print {
-                display: none;
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Outfit', 'sans-serif'],
+                        mono: ['Space Grotesk', 'monospace'],
+                    },
+                    colors: {
+                        brand: {
+                            dark: '#0f172a',
+                            light: '#1e293b',
+                            accent: '#f59e0b', // Amber/Gold
+                            accentHover: '#d97706',
+                        }
+                    },
+                    animation: {
+                        'blob': 'blob 7s infinite',
+                        'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
+                    },
+                    keyframes: {
+                        blob: {
+                            '0%': { transform: 'translate(0px, 0px) scale(1)' },
+                            '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+                            '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+                            '100%': { transform: 'translate(0px, 0px) scale(1)' },
+                        },
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #f59e0b;
+        }
+
+        .glass-card {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .gradient-text {
+            background: linear-gradient(to right, #f59e0b, #fbbf24, #f59e0b);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            background-size: 200% auto;
+            animation: shine 5s linear infinite;
+        }
+
+        @keyframes shine {
+            to {
+                background-position: 200% center;
             }
         }
     </style>
 </head>
 
-<body class="font-sans text-gray-800 bg-gray-50">
-    <div class="max-w-4xl mx-auto p-6 bg-white shadow-lg rounded-lg mt-6">
-        <!-- Header -->
-        <header class="text-center border-b pb-4 mb-6">
-            <h1 class="text-4xl font-bold text-gray-900">Mayur Gajapure</h1>
-            <p class="text-lg text-gray-600">Senior Software Engineer</p>
-            <div class="flex justify-center space-x-4 mt-2 text-gray-600">
-                <p class="flex items-center">
-                    <i data-lucide="map-pin" class="w-5 h-5 mr-1"></i>
-                    Pune, Maharashtra
-                </p>
-                <p class="flex items-center">
-                    <i data-lucide="mail" class="w-5 h-5 mr-1"></i>
-                    <a href="mailto:mgajapure6@gmail.com" class="hover:text-blue-600">mgajapure6@gmail.com</a>
-                </p>
-                <p class="flex items-center">
-                    <i data-lucide="phone" class="w-5 h-5 mr-1"></i>
-                    8055880605
-                </p>
+<body class="bg-brand-dark text-slate-300 antialiased overflow-x-hidden">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 glass-card border-b border-slate-800 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex-shrink-0 flex items-center gap-2 cursor-pointer" onclick="window.scrollTo(0,0)">
+                    <div
+                        class="w-10 h-10 bg-brand-accent rounded-lg flex items-center justify-center text-brand-dark font-bold text-xl font-mono">
+                        M</div>
+                    <span class="font-bold text-xl tracking-tight text-white">Mayur<span
+                            class="text-brand-accent">.dev</span></span>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="#about"
+                            class="hover:text-brand-accent transition-colors px-3 py-2 rounded-md text-sm font-medium">About</a>
+                        <a href="#experience"
+                            class="hover:text-brand-accent transition-colors px-3 py-2 rounded-md text-sm font-medium">Experience</a>
+                        <a href="#projects"
+                            class="hover:text-brand-accent transition-colors px-3 py-2 rounded-md text-sm font-medium">Projects</a>
+                        <a href="#skills"
+                            class="hover:text-brand-accent transition-colors px-3 py-2 rounded-md text-sm font-medium">Skills</a>
+                        <a href="#contact"
+                            class="bg-brand-accent hover:bg-brand-accentHover text-brand-dark px-4 py-2 rounded-full text-sm font-bold transition-all transform hover:scale-105">Contact
+                            Me</a>
+                    </div>
+                </div>
+                <!-- Mobile menu button -->
+                <div class="-mr-2 flex md:hidden">
+                    <button type="button" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')"
+                        class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
             </div>
-        </header>
+        </div>
+        <!-- Mobile Menu -->
+        <div class="hidden md:hidden glass-card border-t border-slate-700" id="mobile-menu">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#about"
+                    class="text-gray-300 hover:text-brand-accent block px-3 py-2 rounded-md text-base font-medium">About</a>
+                <a href="#experience"
+                    class="text-gray-300 hover:text-brand-accent block px-3 py-2 rounded-md text-base font-medium">Experience</a>
+                <a href="#projects"
+                    class="text-gray-300 hover:text-brand-accent block px-3 py-2 rounded-md text-base font-medium">Projects</a>
+                <a href="#skills"
+                    class="text-gray-300 hover:text-brand-accent block px-3 py-2 rounded-md text-base font-medium">Skills</a>
+                <a href="#contact"
+                    class="text-brand-accent block px-3 py-2 rounded-md text-base font-medium">Contact</a>
+            </div>
+        </div>
+    </nav>
 
-        <!-- Summary -->
-        <section class="mb-6">
-            <h2 class="text-2xl font-semibold text-gray-900 flex items-center">
-                <i data-lucide="user" class="w-6 h-6 mr-2"></i>
-                Summary
-            </h2>
-            <p class="mt-2 text-gray-700">
-                Accomplished Software Engineer with over 8 years of experience in designing and developing robust
-                applications using Java, Spring, Angular, JavaScript, and AWS. Skilled in delivering scalable solutions,
-                with a proven track record in leading projects at Volkswagen Group Digital Solutions India, LTI, and
-                VGIPL. Adept at collaborating with cross-functional teams to drive innovation and efficiency.
-            </p>
-        </section>
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
+        <!-- Background Blobs -->
+        <div
+            class="absolute top-0 -left-4 w-72 h-72 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob">
+        </div>
+        <div
+            class="absolute top-0 -right-4 w-72 h-72 bg-brand-accent rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-2000">
+        </div>
+        <div
+            class="absolute -bottom-8 left-20 w-72 h-72 bg-pink-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-4000">
+        </div>
 
-        <!-- Experience -->
-        <section class="mb-6">
-            <h2 class="text-2xl font-semibold text-gray-900 flex items-center">
-                <i data-lucide="briefcase" class="w-6 h-6 mr-2"></i>
-                Professional Experience
-            </h2>
-            <div class="mt-4">
-                <div class="mb-4">
-                    <h3 class="text-xl font-medium text-gray-900">Senior Software Engineer</h3>
-                    <p class="text-gray-600">Volkswagen Group Digital Solutions India (VWITS), Pune</p>
-                    <p class="text-gray-500">Dec 2022 – Present</p>
-                    <ul class="list-disc list-inside mt-2 text-gray-700">
-                        <li>Lead development of enterprise-grade applications using Java, Spring Boot, and Angular,
-                            improving system performance by 20%.</li>
-                        <li>Designed and deployed cloud-based solutions on AWS, optimizing scalability and cost
-                            efficiency.</li>
-                        <li>Collaborated with global teams to implement agile methodologies, reducing delivery timelines
-                            by 15%.</li>
-                    </ul>
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center">
+            <div class="md:w-1/2 text-center md:text-left z-10">
+                <div
+                    class="inline-block px-3 py-1 mb-4 text-xs font-semibold tracking-wider text-brand-accent uppercase bg-brand-accent/10 rounded-full border border-brand-accent/20">
+                    Available for new opportunities
                 </div>
-                <div class="mb-4">
-                    <h3 class="text-xl font-medium text-gray-900">Software Engineer</h3>
-                    <p class="text-gray-600">LTI, Pune</p>
-                    <p class="text-gray-500">2021 – 2022</p>
-                    <ul class="list-disc list-inside mt-2 text-gray-700">
-                        <li>Developed full-stack applications using Java, Spring, and JavaScript, enhancing user
-                            experience for client-facing platforms.</li>
-                        <li>Integrated RESTful APIs and microservices, improving system modularity and maintainability.
-                        </li>
-                    </ul>
+                <h1 class="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
+                    Hi, I'm <span class="gradient-text">Mayur</span><br>
+                    Gajapure
+                </h1>
+                <div class="text-xl md:text-2xl text-slate-400 mb-8 h-8">
+                    Senior <span id="typewriter"
+                        class="text-brand-accent font-mono border-r-2 border-brand-accent pr-1"></span>
                 </div>
+                <p class="text-lg text-slate-400 mb-10 max-w-lg mx-auto md:mx-0 leading-relaxed">
+                    Building robust enterprise solutions and scalable microservices.
+                    Specializing in Java, Spring Boot, and Cloud Architecture with 6+ years of industry experience.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+                    <a href="#projects"
+                        class="px-8 py-4 bg-brand-accent hover:bg-brand-accentHover text-brand-dark font-bold rounded-lg transition-all transform hover:-translate-y-1 shadow-lg shadow-brand-accent/20 flex items-center justify-center gap-2">
+                        View Work <i class="fas fa-arrow-right"></i>
+                    </a>
+                    <a href="#contact"
+                        class="px-8 py-4 border border-slate-600 hover:border-brand-accent text-white font-semibold rounded-lg transition-all hover:bg-slate-800 flex items-center justify-center gap-2">
+                        <i class="fas fa-envelope"></i> Contact Me
+                    </a>
+                </div>
+
+                <div class="mt-12 flex gap-6 justify-center md:justify-start text-slate-400">
+                    <a href="https://github.com" target="_blank" class="hover:text-white transition-colors text-2xl"><i
+                            class="fab fa-github"></i></a>
+                    <a href="https://linkedin.com" target="_blank"
+                        class="hover:text-white transition-colors text-2xl"><i class="fab fa-linkedin"></i></a>
+                    <a href="mailto:mgajapure6@gmail.com" class="hover:text-white transition-colors text-2xl"><i
+                            class="fas fa-envelope"></i></a>
+                </div>
+            </div>
+
+            <div class="md:w-1/2 mt-16 md:mt-0 relative z-10 flex justify-center">
+                <div class="relative w-80 h-80 md:w-96 md:h-96">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-tr from-brand-accent to-purple-600 rounded-full blur-2xl opacity-30 animate-pulse">
+                    </div>
+                    <img src="https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                        alt="Coding Workspace"
+                        class="relative rounded-2xl shadow-2xl border border-slate-700 object-cover w-full h-full transform rotate-3 hover:rotate-0 transition-all duration-500">
+
+                    <!-- Floating Badge -->
+                    <div class="absolute -bottom-6 -left-6 glass-card p-4 rounded-xl shadow-xl animate-bounce"
+                        style="animation-duration: 3s;">
+                        <div class="flex items-center gap-3">
+                            <div class="bg-green-500/20 p-2 rounded-lg text-green-400">
+                                <i class="fas fa-code"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs text-slate-400">Experience</p>
+                                <p class="font-bold text-white">6+ Years</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-24 bg-brand-light relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-brand-accent font-mono text-sm tracking-widest uppercase mb-2">About Me</h2>
+                <h3 class="text-3xl md:text-4xl font-bold text-white">Professional Summary</h3>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="space-y-6 text-lg text-slate-300 leading-relaxed">
+                    <p>
+                        Results-driven <strong class="text-white">Senior Software Engineer</strong> with extensive
+                        experience in designing, developing, and deploying high-performance enterprise applications.
+                        Currently leading development efforts at <span class="text-brand-accent">Volkswagen IT
+                            Services</span>.
+                    </p>
+                    <p>
+                        My expertise lies in the Java ecosystem (Spring Boot, Microservices) and modern frontend
+                        frameworks (React, Angular). I have a proven track record of delivering complex government
+                        projects (MLWB, GST) and scalable ERP solutions.
+                    </p>
+                    <div class="grid grid-cols-2 gap-4 pt-4">
+                        <div class="border-l-2 border-brand-accent pl-4">
+                            <h4 class="text-white font-bold text-xl">10+</h4>
+                            <p class="text-sm text-slate-400">Projects Delivered</p>
+                        </div>
+                        <div class="border-l-2 border-brand-accent pl-4">
+                            <h4 class="text-white font-bold text-xl">6+</h4>
+                            <p class="text-sm text-slate-400">Years Experience</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="space-y-4 mt-8">
+                        <div class="glass-card p-6 rounded-2xl border-t-4 border-brand-accent">
+                            <i class="fas fa-laptop-code text-3xl text-brand-accent mb-4"></i>
+                            <h4 class="text-white font-bold mb-2">Backend Dev</h4>
+                            <p class="text-sm text-slate-400">Java, Spring Boot, Microservices, Hibernate</p>
+                        </div>
+                        <div class="glass-card p-6 rounded-2xl border-t-4 border-blue-500">
+                            <i class="fas fa-database text-3xl text-blue-500 mb-4"></i>
+                            <h4 class="text-white font-bold mb-2">Database</h4>
+                            <p class="text-sm text-slate-400">Oracle, MySQL, PostgreSQL, Firebase</p>
+                        </div>
+                    </div>
+                    <div class="space-y-4">
+                        <div class="glass-card p-6 rounded-2xl border-t-4 border-purple-500">
+                            <i class="fas fa-layer-group text-3xl text-purple-500 mb-4"></i>
+                            <h4 class="text-white font-bold mb-2">Frontend</h4>
+                            <p class="text-sm text-slate-400">React, Angular, JavaScript, Tailwind</p>
+                        </div>
+                        <div class="glass-card p-6 rounded-2xl border-t-4 border-green-500">
+                            <i class="fas fa-cloud text-3xl text-green-500 mb-4"></i>
+                            <h4 class="text-white font-bold mb-2">Cloud & Tools</h4>
+                            <p class="text-sm text-slate-400">Git, Docker, AWS, REST APIs</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="py-24 bg-brand-dark relative overflow-hidden">
+        <!-- Decorative elements -->
+        <div class="absolute right-0 top-1/4 w-64 h-64 bg-brand-accent/5 rounded-full blur-3xl"></div>
+
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-16">
+                <h2 class="text-brand-accent font-mono text-sm tracking-widest uppercase mb-2">Career Path</h2>
+                <h3 class="text-3xl md:text-4xl font-bold text-white">Work Experience</h3>
+            </div>
+
+            <div class="relative border-l-2 border-slate-700 ml-4 md:ml-0 space-y-12">
+
+                <!-- Job 1 -->
+                <div class="relative pl-8 md:pl-0">
+                    <div class="md:flex items-center justify-between group">
+                        <div class="hidden md:block w-5/12 text-right pr-8">
+                            <h4 class="text-2xl font-bold text-white group-hover:text-brand-accent transition-colors">
+                                Sr. Software Engineer</h4>
+                            <p class="text-brand-accent font-medium">Volkswagen IT Services</p>
+                        </div>
+                        <div
+                            class="absolute left-[-9px] top-0 md:left-1/2 md:-ml-[9px] w-4 h-4 rounded-full bg-brand-accent border-4 border-brand-dark shadow-[0_0_0_4px_rgba(245,158,11,0.2)] z-10">
+                        </div>
+                        <div class="md:w-5/12 md:pl-8">
+                            <span
+                                class="inline-block px-3 py-1 rounded-full bg-slate-800 text-xs text-slate-300 mb-2 border border-slate-700">Dec
+                                2021 - Present</span>
+                            <div class="md:hidden mb-2">
+                                <h4 class="text-xl font-bold text-white">Sr. Software Engineer</h4>
+                                <p class="text-brand-accent">Volkswagen IT Services</p>
+                            </div>
+                            <p class="text-slate-400 text-sm leading-relaxed">
+                                Leading development of enterprise automotive solutions. Implementing microservices
+                                architecture and cloud-native applications to support VW's digital transformation.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Job 2 -->
+                <div class="relative pl-8 md:pl-0">
+                    <div class="md:flex items-center justify-between group flex-row-reverse">
+                        <div class="hidden md:block w-5/12 text-left pl-8">
+                            <h4 class="text-2xl font-bold text-white group-hover:text-brand-accent transition-colors">
+                                Software Engineer</h4>
+                            <p class="text-brand-accent font-medium">LTI (Larsen & Toubro)</p>
+                        </div>
+                        <div
+                            class="absolute left-[-9px] top-0 md:left-1/2 md:-ml-[9px] w-4 h-4 rounded-full bg-slate-600 border-4 border-brand-dark group-hover:bg-brand-accent transition-colors z-10">
+                        </div>
+                        <div class="md:w-5/12 md:text-right md:pr-8">
+                            <span
+                                class="inline-block px-3 py-1 rounded-full bg-slate-800 text-xs text-slate-300 mb-2 border border-slate-700">Nov
+                                2020 - Dec 2021</span>
+                            <div class="md:hidden mb-2">
+                                <h4 class="text-xl font-bold text-white">Software Engineer</h4>
+                                <p class="text-brand-accent">LTI</p>
+                            </div>
+                            <p class="text-slate-400 text-sm leading-relaxed">
+                                Worked on GST compliance software and enterprise resource planning modules. Focused on
+                                backend optimization and database design.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Job 3 -->
+                <div class="relative pl-8 md:pl-0">
+                    <div class="md:flex items-center justify-between group">
+                        <div class="hidden md:block w-5/12 text-right pr-8">
+                            <h4 class="text-2xl font-bold text-white group-hover:text-brand-accent transition-colors">
+                                Java Developer</h4>
+                            <p class="text-brand-accent font-medium">Virtual Galaxy Infotech</p>
+                        </div>
+                        <div
+                            class="absolute left-[-9px] top-0 md:left-1/2 md:-ml-[9px] w-4 h-4 rounded-full bg-slate-600 border-4 border-brand-dark group-hover:bg-brand-accent transition-colors z-10">
+                        </div>
+                        <div class="md:w-5/12 md:pl-8">
+                            <span
+                                class="inline-block px-3 py-1 rounded-full bg-slate-800 text-xs text-slate-300 mb-2 border border-slate-700">Sep
+                                2017 - Nov 2020</span>
+                            <div class="md:hidden mb-2">
+                                <h4 class="text-xl font-bold text-white">Java Developer</h4>
+                                <p class="text-brand-accent">Virtual Galaxy Infotech</p>
+                            </div>
+                            <p class="text-slate-400 text-sm leading-relaxed">
+                                Developed government sector applications including MLWB (Labor Welfare Board) systems.
+                                Full stack development using Spring MVC and Angular.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-24 bg-brand-light">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-12">
                 <div>
-                    <h3 class="text-xl font-medium text-gray-900">Software Developer</h3>
-                    <p class="text-gray-600">VGIPL, Pune</p>
-                    <p class="text-gray-500">2018 – 2021</p>
-                    <ul class="list-disc list-inside mt-2 text-gray-700">
-                        <li>Built and maintained web applications using Angular and Java, serving over 10,000 users
-                            monthly.</li>
-                        <li>Implemented CI/CD pipelines, reducing deployment time by 30%.</li>
-                        <li>Contributed to database optimization using SQL, improving query performance by 25%.</li>
+                    <h2 class="text-brand-accent font-mono text-sm tracking-widest uppercase mb-2">Portfolio</h2>
+                    <h3 class="text-3xl md:text-4xl font-bold text-white">Featured Projects</h3>
+                </div>
+                <div class="flex gap-2 mt-6 md:mt-0">
+                    <button
+                        class="filter-btn active px-4 py-2 rounded-full text-sm font-medium bg-brand-accent text-brand-dark transition-all"
+                        data-filter="all">All</button>
+                    <button
+                        class="filter-btn px-4 py-2 rounded-full text-sm font-medium bg-slate-800 text-slate-300 hover:bg-slate-700 transition-all"
+                        data-filter="enterprise">Enterprise</button>
+                    <button
+                        class="filter-btn px-4 py-2 rounded-full text-sm font-medium bg-slate-800 text-slate-300 hover:bg-slate-700 transition-all"
+                        data-filter="freelance">Freelance</button>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="projects-grid">
+
+                <!-- Project 1 -->
+                <div class="project-card group rounded-2xl overflow-hidden glass-card border border-slate-700 hover:border-brand-accent transition-all duration-300 hover:-translate-y-2"
+                    data-category="enterprise">
+                    <div class="h-48 bg-slate-800 relative overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-br from-blue-600/20 to-purple-600/20"></div>
+                        <i
+                            class="fas fa-landmark absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-6xl text-slate-700 group-hover:text-brand-accent/50 transition-colors"></i>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <h4 class="text-xl font-bold text-white">MLWB Portal</h4>
+                            <a href="#" class="text-slate-400 hover:text-brand-accent"><i
+                                    class="fas fa-external-link-alt"></i></a>
+                        </div>
+                        <p class="text-slate-400 text-sm mb-4 line-clamp-3">
+                            Maharashtra Labor Welfare Board system. A comprehensive solution for managing labor laws,
+                            industrial disputes, and worker welfare in the state.
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span
+                                class="px-2 py-1 bg-slate-800 rounded text-xs text-brand-accent border border-slate-700">Spring
+                                MVC</span>
+                            <span
+                                class="px-2 py-1 bg-slate-800 rounded text-xs text-brand-accent border border-slate-700">Oracle</span>
+                            <span
+                                class="px-2 py-1 bg-slate-800 rounded text-xs text-brand-accent border border-slate-700">Angular</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="project-card group rounded-2xl overflow-hidden glass-card border border-slate-700 hover:border-brand-accent transition-all duration-300 hover:-translate-y-2"
+                    data-category="enterprise">
+                    <div class="h-48 bg-slate-800 relative overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-br from-green-600/20 to-teal-600/20"></div>
+                        <i
+                            class="fas fa-file-invoice-dollar absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-6xl text-slate-700 group-hover:text-brand-accent/50 transition-colors"></i>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <h4 class="text-xl font-bold text-white">GST ASP Solution</h4>
+                            <a href="#" class="text-slate-400 hover:text-brand-accent"><i
+                                    class="fas fa-external-link-alt"></i></a>
+                        </div>
+                        <p class="text-slate-400 text-sm mb-4 line-clamp-3">
+                            Application Service Provider for Goods and Services Tax. Features powerful billing, vendor
+                            reconciliation, and automated return filing.
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span
+                                class="px-2 py-1 bg-slate-800 rounded text-xs text-brand-accent border border-slate-700">Spring
+                                Boot</span>
+                            <span
+                                class="px-2 py-1 bg-slate-800 rounded text-xs text-brand-accent border border-slate-700">JPA</span>
+                            <span
+                                class="px-2 py-1 bg-slate-800 rounded text-xs text-brand-accent border border-slate-700">Angular
+                                6</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="project-card group rounded-2xl overflow-hidden glass-card border border-slate-700 hover:border-brand-accent transition-all duration-300 hover:-translate-y-2"
+                    data-category="enterprise">
+                    <div class="h-48 bg-slate-800 relative overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-br from-orange-600/20 to-red-600/20"></div>
+                        <i
+                            class="fas fa-school absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-6xl text-slate-700 group-hover:text-brand-accent/50 transition-colors"></i>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <h4 class="text-xl font-bold text-white">E-School ERP</h4>
+                            <a href="#" class="text-slate-400 hover:text-brand-accent"><i
+                                    class="fas fa-external-link-alt"></i></a>
+                        </div>
+                        <p class="text-slate-400 text-sm mb-4 line-clamp-3">
+                            Complete School Management System for Nair's Essence International. Modules include Finance,
+                            Payroll, Admission, and Transportation.
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span
+                                class="px-2 py-1 bg-slate-800 rounded text-xs text-brand-accent border border-slate-700">Spring
+                                MVC</span>
+                            <span
+                                class="px-2 py-1 bg-slate-800 rounded text-xs text-brand-accent border border-slate-700">Hibernate</span>
+                            <span
+                                class="px-2 py-1 bg-slate-800 rounded text-xs text-brand-accent border border-slate-700">Postgres</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 4 -->
+                <div class="project-card group rounded-2xl overflow-hidden glass-card border border-slate-700 hover:border-brand-accent transition-all duration-300 hover:-translate-y-2"
+                    data-category="freelance">
+                    <div class="h-48 bg-slate-800 relative overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-br from-yellow-600/20 to-brand-accent/20"></div>
+                        <i
+                            class="fas fa-coins absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-6xl text-slate-700 group-hover:text-brand-accent/50 transition-colors"></i>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <h4 class="text-xl font-bold text-white">Gold Retail & Mortgage</h4>
+                            <a href="#" class="text-slate-400 hover:text-brand-accent"><i class="fab fa-github"></i></a>
+                        </div>
+                        <p class="text-slate-400 text-sm mb-4 line-clamp-3">
+                            Intelligent dashboard for Gold Retailers. Manages mortgages, sales, and customer data with
+                            automated reminders and reporting.
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span
+                                class="px-2 py-1 bg-slate-800 rounded text-xs text-brand-accent border border-slate-700">JavaFX</span>
+                            <span
+                                class="px-2 py-1 bg-slate-800 rounded text-xs text-brand-accent border border-slate-700">Spring</span>
+                            <span
+                                class="px-2 py-1 bg-slate-800 rounded text-xs text-brand-accent border border-slate-700">Hibernate</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 5 -->
+                <div class="project-card group rounded-2xl overflow-hidden glass-card border border-slate-700 hover:border-brand-accent transition-all duration-300 hover:-translate-y-2"
+                    data-category="freelance">
+                    <div class="h-48 bg-slate-800 relative overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-br from-indigo-600/20 to-blue-600/20"></div>
+                        <i
+                            class="fas fa-shopping-bag absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-6xl text-slate-700 group-hover:text-brand-accent/50 transition-colors"></i>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <h4 class="text-xl font-bold text-white">BMSoft Business Suite</h4>
+                            <a href="#" class="text-slate-400 hover:text-brand-accent"><i
+                                    class="fas fa-external-link-alt"></i></a>
+                        </div>
+                        <p class="text-slate-400 text-sm mb-4 line-clamp-3">
+                            Offline business application for retailers. GST implementation, inventory management,
+                            accounting, and automated invoice generation.
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span
+                                class="px-2 py-1 bg-slate-800 rounded text-xs text-brand-accent border border-slate-700">Java</span>
+                            <span
+                                class="px-2 py-1 bg-slate-800 rounded text-xs text-brand-accent border border-slate-700">JavaFX</span>
+                            <span
+                                class="px-2 py-1 bg-slate-800 rounded text-xs text-brand-accent border border-slate-700">H2
+                                DB</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 6 -->
+                <div class="project-card group rounded-2xl overflow-hidden glass-card border border-slate-700 hover:border-brand-accent transition-all duration-300 hover:-translate-y-2"
+                    data-category="freelance">
+                    <div class="h-48 bg-slate-800 relative overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-br from-pink-600/20 to-rose-600/20"></div>
+                        <i
+                            class="fas fa-gem absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-6xl text-slate-700 group-hover:text-brand-accent/50 transition-colors"></i>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <h4 class="text-xl font-bold text-white">Online Jewelry Store</h4>
+                            <a href="#" class="text-slate-400 hover:text-brand-accent"><i class="fab fa-github"></i></a>
+                        </div>
+                        <p class="text-slate-400 text-sm mb-4 line-clamp-3">
+                            Full-stack e-commerce application. Features cart management, category filtering, checkout
+                            process, and user authentication.
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span
+                                class="px-2 py-1 bg-slate-800 rounded text-xs text-brand-accent border border-slate-700">Spring</span>
+                            <span
+                                class="px-2 py-1 bg-slate-800 rounded text-xs text-brand-accent border border-slate-700">Hibernate</span>
+                            <span
+                                class="px-2 py-1 bg-slate-800 rounded text-xs text-brand-accent border border-slate-700">Bootstrap</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-24 bg-brand-dark">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-brand-accent font-mono text-sm tracking-widest uppercase mb-2">My Arsenal</h2>
+                <h3 class="text-3xl md:text-4xl font-bold text-white">Technical Skills</h3>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Languages -->
+                <div class="glass-card p-6 rounded-2xl hover:bg-slate-800/50 transition-colors">
+                    <h4 class="text-xl font-bold text-white mb-6 flex items-center gap-2">
+                        <i class="fas fa-code text-brand-accent"></i> Languages
+                    </h4>
+                    <ul class="space-y-3">
+                        <li class="flex items-center gap-3 text-slate-300"><i class="fab fa-java text-orange-500"></i>
+                            Java (Expert)</li>
+                        <li class="flex items-center gap-3 text-slate-300"><i class="fab fa-js text-yellow-400"></i>
+                            JavaScript</li>
+                        <li class="flex items-center gap-3 text-slate-300"><i class="fas fa-database text-blue-400"></i>
+                            SQL</li>
+                        <li class="flex items-center gap-3 text-slate-300"><i class="fab fa-html5 text-orange-600"></i>
+                            HTML5/CSS3</li>
+                    </ul>
+                </div>
+
+                <!-- Frameworks -->
+                <div class="glass-card p-6 rounded-2xl hover:bg-slate-800/50 transition-colors">
+                    <h4 class="text-xl font-bold text-white mb-6 flex items-center gap-2">
+                        <i class="fas fa-layer-group text-brand-accent"></i> Frameworks
+                    </h4>
+                    <ul class="space-y-3">
+                        <li class="flex items-center gap-3 text-slate-300"><i class="fas fa-leaf text-green-500"></i>
+                            Spring Boot</li>
+                        <li class="flex items-center gap-3 text-slate-300"><i class="fas fa-cubes text-blue-500"></i>
+                            Spring MVC</li>
+                        <li class="flex items-center gap-3 text-slate-300"><i
+                                class="fas fa-network-wired text-purple-500"></i> Microservices</li>
+                        <li class="flex items-center gap-3 text-slate-300"><i class="fab fa-react text-blue-400"></i>
+                            React.js</li>
+                        <li class="flex items-center gap-3 text-slate-300"><i class="fab fa-angular text-red-500"></i>
+                            Angular 2+</li>
+                    </ul>
+                </div>
+
+                <!-- Database -->
+                <div class="glass-card p-6 rounded-2xl hover:bg-slate-800/50 transition-colors">
+                    <h4 class="text-xl font-bold text-white mb-6 flex items-center gap-2">
+                        <i class="fas fa-server text-brand-accent"></i> Database
+                    </h4>
+                    <ul class="space-y-3">
+                        <li class="flex items-center gap-3 text-slate-300"><i class="fas fa-database text-red-500"></i>
+                            Oracle DB</li>
+                        <li class="flex items-center gap-3 text-slate-300"><i class="fas fa-database text-blue-500"></i>
+                            MySQL</li>
+                        <li class="flex items-center gap-3 text-slate-300"><i class="fas fa-database text-blue-400"></i>
+                            PostgreSQL</li>
+                        <li class="flex items-center gap-3 text-slate-300"><i class="fas fa-fire text-yellow-500"></i>
+                            Firebase</li>
+                    </ul>
+                </div>
+
+                <!-- Tools -->
+                <div class="glass-card p-6 rounded-2xl hover:bg-slate-800/50 transition-colors">
+                    <h4 class="text-xl font-bold text-white mb-6 flex items-center gap-2">
+                        <i class="fas fa-tools text-brand-accent"></i> Tools
+                    </h4>
+                    <ul class="space-y-3">
+                        <li class="flex items-center gap-3 text-slate-300"><i
+                                class="fab fa-git-alt text-orange-600"></i> Git</li>
+                        <li class="flex items-center gap-3 text-slate-300"><i class="fab fa-docker text-blue-500"></i>
+                            Docker</li>
+                        <li class="flex items-center gap-3 text-slate-300"><i class="fas fa-code-branch text-white"></i>
+                            STS / VS Code</li>
+                        <li class="flex items-center gap-3 text-slate-300"><i class="fab fa-jira text-blue-600"></i>
+                            Jira</li>
                     </ul>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Education -->
-        <section class="mb-6">
-            <h2 class="text-2xl font-semibold text-gray-900 flex items-center">
-                <i data-lucide="graduation-cap" class="w-6 h-6 mr-2"></i>
-                Education
-            </h2>
-            <div class="mt-2">
-                <h3 class="text-xl font-medium text-gray-900">B.E. in Computer Science</h3>
-                <p class="text-gray-600">Rashtrasant Tukadoji Maharaj Nagpur University (RTMNU)</p>
-                <p class="text-gray-500">2015</p>
+    <!-- Contact Section -->
+    <section id="contact" class="py-24 bg-brand-light relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-full overflow-hidden z-0">
+            <div class="absolute -bottom-24 -left-24 w-96 h-96 bg-brand-accent/10 rounded-full blur-3xl"></div>
+        </div>
+
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="glass-card rounded-3xl p-8 md:p-12 border border-slate-700 shadow-2xl">
+                <div class="text-center mb-12">
+                    <h2 class="text-brand-accent font-mono text-sm tracking-widest uppercase mb-2">Get In Touch</h2>
+                    <h3 class="text-3xl md:text-4xl font-bold text-white">Let's Work Together</h3>
+                    <p class="text-slate-400 mt-4">Currently open for new opportunities and freelance projects.</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-12">
+                    <div class="space-y-8">
+                        <div class="flex items-start gap-4">
+                            <div
+                                class="w-12 h-12 rounded-full bg-brand-accent/10 flex items-center justify-center text-brand-accent shrink-0">
+                                <i class="fas fa-map-marker-alt text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-bold text-lg">Location</h4>
+                                <p class="text-slate-400">Hinjewadi Phase 3, Pune, MH, India</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <div
+                                class="w-12 h-12 rounded-full bg-brand-accent/10 flex items-center justify-center text-brand-accent shrink-0">
+                                <i class="fas fa-envelope text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-bold text-lg">Email</h4>
+                                <a href="mailto:mgajapure6@gmail.com"
+                                    class="text-slate-400 hover:text-brand-accent transition-colors">mgajapure6@gmail.com</a>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <div
+                                class="w-12 h-12 rounded-full bg-brand-accent/10 flex items-center justify-center text-brand-accent shrink-0">
+                                <i class="fas fa-phone text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-bold text-lg">Phone</h4>
+                                <p class="text-slate-400">+91 80558 80605</p>
+                            </div>
+                        </div>
+
+                        <div class="pt-8 border-t border-slate-700">
+                            <h4 class="text-white font-bold mb-4">Follow Me</h4>
+                            <div class="flex gap-4">
+                                <a href="#"
+                                    class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-slate-400 hover:bg-brand-accent hover:text-brand-dark transition-all">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                                <a href="#"
+                                    class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-slate-400 hover:bg-brand-accent hover:text-brand-dark transition-all">
+                                    <i class="fab fa-linkedin-in"></i>
+                                </a>
+                                <a href="#"
+                                    class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-slate-400 hover:bg-brand-accent hover:text-brand-dark transition-all">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <form class="space-y-4"
+                        onsubmit="event.preventDefault(); alert('Thank you for your message! I will get back to you soon.');">
+                        <div>
+                            <label class="block text-sm font-medium text-slate-400 mb-1">Name</label>
+                            <input type="text"
+                                class="w-full bg-slate-800/50 border border-slate-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-brand-accent focus:ring-1 focus:ring-brand-accent transition-all"
+                                placeholder="Your Name">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-slate-400 mb-1">Email</label>
+                            <input type="email"
+                                class="w-full bg-slate-800/50 border border-slate-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-brand-accent focus:ring-1 focus:ring-brand-accent transition-all"
+                                placeholder="your@email.com">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-slate-400 mb-1">Message</label>
+                            <textarea rows="4"
+                                class="w-full bg-slate-800/50 border border-slate-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-brand-accent focus:ring-1 focus:ring-brand-accent transition-all"
+                                placeholder="Tell me about your project..."></textarea>
+                        </div>
+                        <button type="submit"
+                            class="w-full bg-brand-accent hover:bg-brand-accentHover text-brand-dark font-bold py-3 rounded-lg transition-all transform hover:scale-[1.02] shadow-lg shadow-brand-accent/20">
+                            Send Message
+                        </button>
+                    </form>
+                </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Skills -->
-        <section class="mb-6">
-            <h2 class="text-2xl font-semibold text-gray-900 flex items-center">
-                <i data-lucide="code" class="w-6 h-6 mr-2"></i>
-                Skills
-            </h2>
-            <ul class="mt-2 grid grid-cols-2 gap-2 text-gray-700">
-                <li class="flex items-center"><i data-lucide="check-circle" class="w-4 h-4 mr-2 text-green-600"></i>Java
-                </li>
-                <li class="flex items-center"><i data-lucide="check-circle"
-                        class="w-4 h-4 mr-2 text-green-600"></i>Spring / Spring Boot</li>
-                <li class="flex items-center"><i data-lucide="check-circle"
-                        class="w-4 h-4 mr-2 text-green-600"></i>Angular</li>
-                <li class="flex items-center"><i data-lucide="check-circle"
-                        class="w-4 h-4 mr-2 text-green-600"></i>JavaScript</li>
-                <li class="flex items-center"><i data-lucide="check-circle" class="w-4 h-4 mr-2 text-green-600"></i>AWS
-                </li>
-                <li class="flex items-center"><i data-lucide="check-circle"
-                        class="w-4 h-4 mr-2 text-green-600"></i>RESTful APIs</li>
-                <li class="flex items-center"><i data-lucide="check-circle"
-                        class="w-4 h-4 mr-2 text-green-600"></i>Microservices</li>
-                <li class="flex items-center"><i data-lucide="check-circle" class="w-4 h-4 mr-2 text-green-600"></i>SQL
-                </li>
-            </ul>
-        </section>
-    </div>
+    <!-- Footer -->
+    <footer class="bg-brand-dark border-t border-slate-800 py-8">
+        <div
+            class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-4">
+            <p class="text-slate-500 text-sm">
+                &copy; 2024 Mayur Gajapure. All rights reserved.
+            </p>
+            <p class="text-slate-600 text-sm flex items-center gap-2">
+                Designed with <i class="fas fa-heart text-red-500"></i> & Tailwind CSS
+            </p>
+        </div>
+    </footer>
 
     <script>
-        lucide.createIcons();
-    </script>
-    <script type="text/javascript">
-        var gk_isXlsx = false;
-        var gk_xlsxFileLookup = {};
-        var gk_fileData = {};
-        function filledCell(cell) {
-            return cell !== '' && cell != null;
-        }
-        function loadFileData(filename) {
-            if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
-                try {
-                    var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
-                    var firstSheetName = workbook.SheetNames[0];
-                    var worksheet = workbook.Sheets[firstSheetName];
+        // Typewriter Effect
+        const words = ["Software Engineer", "Java Developer", "Spring Boot Expert", "Problem Solver"];
+        let i = 0;
+        let timer;
 
-                    // Convert sheet to JSON to filter blank rows
-                    var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
-                    // Filter out blank rows (rows where all cells are empty, null, or undefined)
-                    var filteredData = jsonData.filter(row => row.some(filledCell));
+        function typeWriter() {
+            const heading = document.getElementById("typewriter");
+            const word = words[i];
+            let currentText = heading.innerText;
 
-                    // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
-                    var headerRowIndex = filteredData.findIndex((row, index) =>
-                        row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
-                    );
-                    // Fallback
-                    if (headerRowIndex === -1 || headerRowIndex > 25) {
-                        headerRowIndex = 0;
-                    }
-
-                    // Convert filtered JSON back to CSV
-                    var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
-                    csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
-                    return csv;
-                } catch (e) {
-                    console.error(e);
-                    return "";
-                }
+            if (!this.isDeleting && currentText !== word) {
+                heading.innerText = word.substring(0, currentText.length + 1);
+                timer = setTimeout(typeWriter, 100);
+            } else if (!this.isDeleting && currentText === word) {
+                this.isDeleting = true;
+                timer = setTimeout(typeWriter, 2000); // Pause at end
+            } else if (this.isDeleting && currentText !== "") {
+                heading.innerText = word.substring(0, currentText.length - 1);
+                timer = setTimeout(typeWriter, 50);
+            } else {
+                this.isDeleting = false;
+                i = (i + 1) % words.length;
+                timer = setTimeout(typeWriter, 500);
             }
-            return gk_fileData[filename] || "";
         }
-    </script>l̥
+
+        // Start Typewriter
+        document.addEventListener('DOMContentLoaded', () => {
+            typeWriter();
+        });
+
+        // Project Filtering
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const projectCards = document.querySelectorAll('.project-card');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove active class from all
+                filterBtns.forEach(b => {
+                    b.classList.remove('bg-brand-accent', 'text-brand-dark');
+                    b.classList.add('bg-slate-800', 'text-slate-300');
+                });
+                // Add active to clicked
+                btn.classList.remove('bg-slate-800', 'text-slate-300');
+                btn.classList.add('bg-brand-accent', 'text-brand-dark');
+
+                const filterValue = btn.getAttribute('data-filter');
+
+                projectCards.forEach(card => {
+                    if (filterValue === 'all' || card.getAttribute('data-category') === filterValue) {
+                        card.style.display = 'block';
+                        setTimeout(() => {
+                            card.style.opacity = '1';
+                            card.style.transform = 'translateY(0)';
+                        }, 50);
+                    } else {
+                        card.style.opacity = '0';
+                        card.style.transform = 'translateY(20px)';
+                        setTimeout(() => {
+                            card.style.display = 'none';
+                        }, 300);
+                    }
+                });
+            });
+        });
+
+        // Navbar Scroll Effect
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                nav.classList.add('shadow-lg', 'bg-brand-dark/90');
+            } else {
+                nav.classList.remove('shadow-lg', 'bg-brand-dark/90');
+            }
+        });
+    </script>
 </body>
 
 </html>
